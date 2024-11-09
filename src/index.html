@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <div class="progress-section">
+        <span class="progress-header">Progress</span>
+        <svg id="progress-bar" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" stroke-width="8" class="progress-background"></circle>
+            <circle cx="50" cy="50" r="42" stroke-width="8" class="progress-foreground"></circle>
+        </svg>
+    </div>
+    <div class="controls-section">
+        <div class="input-container">
+            <input type="number" id="progress-value" value="100" min="0" max="100">
+            <span>Value</span>
+        </div>
+        <div class="toggle-container">
+            <input type="checkbox" id="animate-toggle">
+            <span>Animate</span>
+        </div>
+        <div class="toggle-container">
+            <input type="checkbox" id="hide-toggle">
+            <span>Hide</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
