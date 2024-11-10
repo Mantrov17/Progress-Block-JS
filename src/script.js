@@ -25,11 +25,11 @@ animateToggle.addEventListener('change', () => {
 
 hideToggle.addEventListener('change', () => {
     const isHidden = hideToggle.checked;
-    progressSection.classList.toggle('hidden', isHidden);
-    valueInput.classList.toggle('hidden', isHidden);
-    animateToggle.classList.toggle('hidden', isHidden);
+    progressSection.style.visibility = isHidden ? 'hidden' : 'visible';
+    valueInput.style.visibility = isHidden ? 'hidden' : 'visible';
+    animateToggle.style.visibility = isHidden ? 'hidden' : 'visible';
     checkboxSpans.forEach(span => {
-        span.classList.toggle('hidden', isHidden);
+        span.style.visibility = isHidden ? 'hidden' : 'visible';
     });
 });
 
