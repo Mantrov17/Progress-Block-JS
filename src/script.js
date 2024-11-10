@@ -3,42 +3,34 @@ const valueInput = document.getElementById('progress-value');
 const animateToggle = document.getElementById('animate-toggle');
 const hideToggle = document.getElementById('hide-toggle');
 const progressContainer = document.querySelector('.container');
-const radius = progressBar.getAttribute('r');  // радиус из атрибута <circle>
+const radius = progressBar.getAttribute('r');
 
-// Вычисляем длину окружности динамически
-const circumference = 2 * Math.PI * radius;  // длина окружности для текущего радиуса
+const circumference = 2 * Math.PI * radius;
 
-// Устанавливаем значение stroke-dasharray и stroke-dashoffset динамически
 progressBar.style.strokeDasharray = circumference;
 progressBar.style.strokeDashoffset = circumference;
 
-// Функция для обновления прогресса
 const updateProgress = () => {
-    const value = Math.min(Math.max(valueInput.value, 0), 100);  // ограничиваем значение от 0 до 100
-    const offset = circumference - (circumference * value) / 100;  // вычисляем offset в зависимости от прогресса
-    progressBar.style.strokeDashoffset = value === 0 ? circumference : offset;  // для 0 прогресс-бара
+    const value = Math.min(Math.max(valueInput.value, 0), 100);
+    const offset = circumference - (circumference * value) / 100;
+    progressBar.style.strokeDashoffset = value === 0 ? circumference : offset;
 };
 
-// Слушатель изменений ввода
 valueInput.addEventListener('input', updateProgress);
 
-// Анимация прогресс-бара
 animateToggle.addEventListener('change', () => {
     progressBar.classList.toggle('animate', animateToggle.checked);
 });
 
-// Скрытие прогресс-бара
 hideToggle.addEventListener('change', () => {
     progressContainer.classList.toggle('hidden', hideToggle.checked);
 });
 
-// Инициализация прогресса при загрузке страницы
 updateProgress();
 
-// API для управления состоянием прогресса
 const progressAPI = {
     setProgress(value) {
-        valueInput.value = Math.min(Math.max(value, 0), 100);  // Прогресс в диапазоне от 0 до 100
+        valueInput.value = Math.min(Math.max(value, 0), 100);
         updateProgress();
     },
     getProgress() {
@@ -53,8 +45,3 @@ const progressAPI = {
         progressContainer.classList.toggle('hidden', !isVisible);
     }
 };
-
-// Пример использования API
-// progressAPI.setProgress(75);       // Установить прогресс на 75%
-// progressAPI.setAnimate(true);      // Включить анимацию
-// progressAPI.setVisibility(false); // Скрыть прогресс
