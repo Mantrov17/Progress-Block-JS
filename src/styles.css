@@ -164,7 +164,7 @@ input[type="checkbox"]:checked::before {
 
 /* Hidden Class */
 .hidden {
-    display: none;
+    visibility: hidden;
 }
 
 /* Media Queries */

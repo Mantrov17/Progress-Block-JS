@@ -2,7 +2,8 @@ const progressBar = document.querySelector('.progress-foreground');
 const valueInput = document.getElementById('progress-value');
 const animateToggle = document.getElementById('animate-toggle');
 const hideToggle = document.getElementById('hide-toggle');
-const progressContainer = document.querySelector('.container');
+const progressSection = document.querySelector('.progress-section');
+const checkboxSpans = document.querySelectorAll('.checkbox-span');
 const radius = progressBar.getAttribute('r');
 
 const circumference = 2 * Math.PI * radius;
@@ -23,7 +24,13 @@ animateToggle.addEventListener('change', () => {
 });
 
 hideToggle.addEventListener('change', () => {
-    progressContainer.classList.toggle('hidden', hideToggle.checked);
+    const isHidden = hideToggle.checked;
+    progressSection.classList.toggle('hidden', isHidden);
+    valueInput.classList.toggle('hidden', isHidden);
+    animateToggle.classList.toggle('hidden', isHidden);
+    checkboxSpans.forEach(span => {
+        span.classList.toggle('hidden', isHidden);
+    });
 });
 
 updateProgress();
@@ -41,7 +48,10 @@ const progressAPI = {
         progressBar.classList.toggle('animate', isAnimated);
     },
     setVisibility(isVisible) {
+        const elementsToHide = [progressSection, valueInput, animateToggle, ...checkboxSpans];
+        elementsToHide.forEach(element => {
+            element.style.visibility = isVisible ? 'visible' : 'hidden';
+        });
         hideToggle.checked = !isVisible;
-        progressContainer.classList.toggle('hidden', !isVisible);
     }
 };
